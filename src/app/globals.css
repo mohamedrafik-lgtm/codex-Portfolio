@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #0a0a0a;
+  --foreground: #ededed;
 }
 
 @theme inline {
@@ -10,17 +10,196 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --font-cairo: var(--font-cairo);
 }
 
 body {
-  background: var(--background);
+  background: transparent !important; /* Let ThreeBackground show through */
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+main {
+  background: transparent !important; /* Ensure main doesn't cover ThreeBackground */
+  position: relative;
+  min-height: 100vh;
+}
+
+html {
+  background: #000000; /* Fallback black background */
+}
+
+section {
+  background: transparent !important; /* All sections transparent */
+  position: relative;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.font-cairo {
+  font-family: var(--font-cairo), sans-serif;
+}
+
+.icon-glow {
+  filter: drop-shadow(0 0 6px rgba(255, 0, 0, 0.5));
+}
+
+@keyframes blurFadeIn {
+  from {
+    filter: blur(8px);
+    opacity: 0.3;
+  }
+  to {
+    filter: blur(0px);
+    opacity: 1;
+  }
+}
+
+.border-thin {
+  border-width: 0.5px;
+}
+
+.tech-text {
+  line-height: 1.5;
+}
+
+.tech-subtext {
+  line-height: 1.4;
+}
+
+.logo-image {
+  mix-blend-mode: screen;
+}
+
+a:hover .logo-image {
+  filter: brightness(1.2) contrast(1.2) drop-shadow(0 0 5px #FF0000) !important;
+}
+
+.font-orbitron {
+  font-family: 'Orbitron', sans-serif;
+}
+
+.font-jetbrains {
+  font-family: 'JetBrains Mono', monospace;
+}
+
+.icon-drop-shadow {
+  filter: drop-shadow(0 0 4px rgba(255, 0, 0, 0.6));
+}
+
+html {
+  scroll-behavior: auto;
+  scroll-snap-type: y proximity;
+}
+
+section[id] {
+  scroll-snap-align: start;
+  scroll-snap-stop: normal;
+}
+
+.card {
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  border-color: rgba(239, 68, 68, 0.5);
+}
+
+/* GSAP Reveal Elements */
+[data-gsap-reveal] {
+  opacity: 0;
+  visibility: hidden;
+  will-change: transform, opacity;
+}
+
+[data-gsap-reveal].is-visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Content Layer - Ensure it's above Three.js */
+main > div {
+  position: relative;
+  z-index: 10;
+  overflow: visible !important; /* Prevent clipping */
+}
+
+/* Section containers - no overflow clipping */
+section {
+  overflow: visible !important;
+}
+
+/* Interactive Elements */
+.card,
+.service-card,
+.tech-card,
+button,
+a {
+  pointer-events: auto !important;
+  position: relative; /* Ensure proper stacking */
+}
+
+.about-card {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+  min-height: 100%;
+  pointer-events: auto;
+  overflow: visible !important; /* Prevent clipping */
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure all cards are visible by default if animation fails */
+.about-card,
+.service-card,
+.tech-card,
+.sector-card {
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Process section special styling */
+.stage-content {
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.stage-title-en,
+.stage-title-ar {
+  transition: color 0.3s ease;
+}
+
+/* Last card specific fix */
+.about-card:last-child,
+.service-card:last-child,
+.tech-card:last-child,
+.sector-card:last-child {
+  z-index: 2; /* Ensure it's above siblings */
+}
+
+/* Decorative elements should not block interaction */
+.scan-line,
+.scanline-overlay,
+[class*="overlay"],
+[class*="decoration"] {
+  pointer-events: none !important;
+}
+
+/* Grid containers - prevent overflow */
+.grid {
+  overflow: visible !important;
+}
+
+@media (max-width: 768px) {
+  .about-card {
+    margin-bottom: 20px;
+  }
 }
