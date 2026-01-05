@@ -6,15 +6,15 @@ import Image from 'next/image';
 import logo from '../img/e1cd77fa-4af0-412f-8ab7-f8635cbad038_removalai_preview.png';
 
 const navLinks = [
-  { id: 'about', label: 'من نحن' },
-  { id: 'services', label: 'الخدمات الأساسية' },
-  { id: 'sectors', label: 'القطاعات المستهدفة' },
-  { id: 'models', label: 'نماذج الأعمال' },
-  { id: 'portfolio', label: 'الأعمال السابقة' },
-  { id: 'tech', label: 'التقنيات المستخدمة' },
-  { id: 'workflow', label: 'طريقة العمل' },
-  { id: 'team', label: 'فريق العمل' },
-  { id: 'why', label: 'لماذا نحن' },
+  { id: 'about', label: 'من نحن', type: 'scroll' },
+  { id: 'services', label: 'الخدمات الأساسية', type: 'scroll' },
+  { id: 'sectors', label: 'القطاعات المستهدفة', type: 'scroll' },
+  { id: 'models', label: 'نماذج الأعمال', type: 'scroll' },
+  { id: 'portfolio', label: 'الأعمال السابقة', type: 'link' },
+  { id: 'tech', label: 'التقنيات المستخدمة', type: 'scroll' },
+  { id: 'workflow', label: 'طريقة العمل', type: 'scroll' },
+  { id: 'team', label: 'فريق العمل', type: 'scroll' },
+  { id: 'why', label: 'لماذا نحن', type: 'scroll' },
 ];
 
 export default function Navbar() {
@@ -51,11 +51,16 @@ export default function Navbar() {
     }
   }, [isOpen]);
 
-  const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  const handleNavClick = (id: string, type: string) => {
+    if (type === 'link') {
+      window.location.href = `/${id}`;
       setIsOpen(false);
+    } else {
+      const element = document.getElementById(id);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        setIsOpen(false);
+      }
     }
   };
 
@@ -99,7 +104,7 @@ export default function Navbar() {
               {navLinks.map((link) => (
                 <button
                   key={link.id}
-                  onClick={() => scrollToSection(link.id)}
+                  onClick={() => handleNavClick(link.id, link.type)}
                   className="nav-link px-3 py-2 text-[13px] font-medium text-gray-300 hover:text-red-500 transition-all duration-300 relative group"
                 >
                   {/* Corner Brackets */}
@@ -114,7 +119,7 @@ export default function Navbar() {
             {/* CTA Button */}
             <div className="hidden lg:flex items-center">
               <button
-                onClick={() => scrollToSection('contact')}
+                onClick={() => handleNavClick('contact', 'scroll')}
                 className="cta-button px-5 py-2 text-[13px] font-semibold text-red-500 border-2 border-red-500 hover:bg-red-500 hover:text-black transition-all duration-300 relative overflow-hidden group font-orbitron"
               >
                 <span className="relative z-10">تواصل معنا</span>
@@ -164,7 +169,7 @@ export default function Navbar() {
             {navLinks.map((link, index) => (
               <button
                 key={link.id}
-                onClick={() => scrollToSection(link.id)}
+                onClick={() => handleNavClick(link.id, link.type)}
                 className="block w-full text-right px-4 py-3 text-base font-medium text-gray-300 hover:text-red-500 hover:bg-red-500/10 transition-all duration-300 border-b border-gray-800/50"
                 style={{
                   animationDelay: `${index * 50}ms`,
@@ -176,7 +181,7 @@ export default function Navbar() {
           </div>
 
           <button
-            onClick={() => scrollToSection('contact')}
+            onClick={() => handleNavClick('contact', 'scroll')}
             className="mt-6 w-full px-6 py-3 text-base font-semibold text-red-500 border-2 border-red-500 hover:bg-red-500 hover:text-black transition-all duration-300"
           >
             تواصل معنا
