@@ -7,7 +7,10 @@ import SectorsSection from "@/components/SectorsSection";
 import ContractingModelsSection from "@/components/ContractingModelsSection";
 import TechStackSection from "@/components/TechStackSection";
 import ProcessSection from "@/components/ProcessSection";
+import TeamSection from "@/components/TeamSection";
+import WhyChooseUsSection from "@/components/WhyChooseUsSection";
 import ContactSection from "@/components/ContactSection";
+import Footer from "@/components/Footer";
 
 // Dynamic imports for client-only components
 const ThreeBackground = dynamic(() => import("@/components/ThreeBackground"), { ssr: false });
@@ -17,7 +20,7 @@ const ScanlineOverlay = dynamic(() => import("@/components/ScanlineOverlay"), { 
 
 export default function Home() {
   return (
-    <main className="min-h-screen relative text-white">
+    <main className="min-h-screen relative text-white" suppressHydrationWarning>
       <ThreeBackground />
       <Navbar />
       <ScrollAnimations />
@@ -43,27 +46,20 @@ export default function Home() {
           <ProcessSection />
         </div>
         
+        <div className="pointer-events-auto">
+          <TeamSection />
+        </div>
         
-        <section id="team" className="min-h-screen flex items-center justify-center pointer-events-auto">
-          <div className="text-center px-4">
-            <h1 className="text-5xl font-bold mb-4">فريق العمل</h1>
-            <p className="subtext text-xl text-gray-400 max-w-2xl mx-auto">
-              خبراء متخصصون في مجالاتهم
-            </p>
-          </div>
-        </section>
-        
-        <section id="why" className="min-h-screen flex items-center justify-center pointer-events-auto">
-          <div className="text-center px-4">
-            <h1 className="text-5xl font-bold mb-4">لماذا نحن</h1>
-            <p className="subtext text-xl text-gray-400 max-w-2xl mx-auto">
-              الجودة والإبداع في كل مشروع
-            </p>
-          </div>
-        </section>
+        <div className="pointer-events-auto">
+          <WhyChooseUsSection />
+        </div>
         
         <div className="pointer-events-auto">
           <ContactSection />
+        </div>
+        
+        <div className="pointer-events-auto">
+          <Footer />
         </div>
       </div>
     </main>

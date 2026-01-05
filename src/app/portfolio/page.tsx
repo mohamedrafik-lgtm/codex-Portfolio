@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from 'framer-motion';
 import ProjectCard from '@/components/ProjectCard';
 import { projectsData } from '@/data/projectsData';
+import Footer from '@/components/Footer';
 
 // Dynamic imports for client-only components
 const ThreeBackground = dynamic(() => import("@/components/ThreeBackground"), { ssr: false });
@@ -108,6 +109,11 @@ export default function PortfolioPage() {
             </Link>
           </motion.div>
         </div>
+      </div>
+      
+      {/* Footer */}
+      <div className="relative z-10">
+        <Footer />
       </div>
     </main>
   );

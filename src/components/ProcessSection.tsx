@@ -1,9 +1,6 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import gsap from 'gsap';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { ScrollToPlugin } from 'gsap/ScrollToPlugin';
 
 const stages = [
   {
@@ -44,48 +41,41 @@ const stages = [
 ];
 
 export default function ProcessSection() {
-  const [isMounted, setIsMounted] = useState(false);
   const [activeStage, setActiveStage] = useState(0);
   const sectionRef = useRef<HTMLElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
-    setIsMounted(true);
+    const handleScroll = () => {
+      cardRefs.current.forEach((card, index) => {
+        if (card) {
+          const rect = card.getBoundingClientRect();
+          const windowHeight = window.innerHeight;
+          
+          // Check if card is in viewport center area
+          if (rect.top < windowHeight / 2 && rect.bottom > windowHeight / 2) {
+            setActiveStage(index);
+          }
+        }
+      });
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll(); // Initial check
+    
+    return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  useEffect(() => {
-    if (!isMounted || !sectionRef.current) return;
-
-    gsap.registerPlugin(ScrollTrigger, ScrollToPlugin);
-
-    const cards = sectionRef.current.querySelectorAll('.stage-card');
-    const triggers: ScrollTrigger[] = [];
-
-    cards.forEach((card, index) => {
-      const trigger = ScrollTrigger.create({
-        trigger: card as HTMLElement,
-        start: 'top center+=100',
-        end: 'bottom center-=100',
-        onEnter: () => setActiveStage(index),
-        onEnterBack: () => setActiveStage(index),
-      });
-      triggers.push(trigger);
-    });
-
-    return () => {
-      triggers.forEach(t => t.kill());
-    };
-  }, [isMounted]);
-
   const scrollToStage = (index: number) => {
-    if (!sectionRef.current) return;
-    const cards = sectionRef.current.querySelectorAll('.stage-card');
-    const targetCard = cards[index] as HTMLElement;
+    const targetCard = cardRefs.current[index];
     
     if (targetCard) {
-      gsap.to(window, {
-        duration: 1,
-        scrollTo: { y: targetCard, offsetY: -100 },
-        ease: 'power2.inOut',
+      const yOffset = 120;
+      const y = targetCard.getBoundingClientRect().top + window.pageYOffset - yOffset;
+      
+      window.scrollTo({
+        top: y,
+        behavior: 'smooth'
       });
     }
   };
@@ -94,8 +84,7 @@ export default function ProcessSection() {
     <section
       ref={sectionRef}
       id="workflow"
-      className="relative bg-black text-white py-20 overflow-hidden"
-      suppressHydrationWarning
+      className="relative bg-black text-white py-12 sm:py-16 lg:py-20 overflow-hidden"
     >
       {/* Background Grid */}
       <div className="absolute inset-0 opacity-[0.03]">
@@ -110,7 +99,7 @@ export default function ProcessSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12 lg:mb-16">
           <p className="text-xs text-red-500 mb-3 font-mono tracking-[0.3em] uppercase">
             WORK PROCESS
           </p>
@@ -122,79 +111,103 @@ export default function ProcessSection() {
           </p>
         </div>
 
-        <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
-          {/* Sidebar Navigation */}
-          <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-28">
-              <div className="space-y-3">
-                {stages.map((stage, index) => (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          {/* Sidebar Navigation - Hidden on Mobile */}
+          <div className="hidden lg:block lg:col-span-4">
+            <div className="lg:sticky lg:top-28 space-y-3">
+              {stages.map((stage, index) => {
+                const isActive = index === activeStage;
+                const isCompleted = index < activeStage;
+                
+                return (
                   <button
                     key={stage.id}
                     onClick={() => scrollToStage(index)}
                     className={`
-                      group w-full text-right flex items-center gap-4 p-4 rounded-lg
-                      transition-all duration-300 border-2
-                      ${index === activeStage
-                        ? 'bg-red-500/10 border-red-500'
-                        : index < activeStage
-                        ? 'bg-red-500/5 border-red-500/30'
-                        : 'bg-transparent border-gray-800 hover:border-gray-700'
+                      group w-full flex items-center gap-4 p-4 rounded-lg
+                      transition-all duration-300 border-2 min-h-[80px]
+                      ${isActive 
+                        ? 'bg-red-500/30 border-red-500 shadow-2xl shadow-red-500/50 scale-[1.02]' 
+                        : isCompleted 
+                        ? 'bg-red-500/10 border-red-500/50' 
+                        : 'bg-black/50 border-gray-800 hover:border-gray-700'
                       }
                     `}
                   >
-                    <div className={`
-                      flex-shrink-0 w-12 h-12 rounded-full flex items-center justify-center
-                      font-bold text-lg transition-all duration-300
-                      ${index === activeStage
-                        ? 'bg-red-500 text-white scale-110'
-                        : index < activeStage
-                        ? 'bg-red-500/50 text-white'
-                        : 'bg-gray-800 text-gray-500 group-hover:bg-gray-700'
-                      }
-                    `}>
+                    <div 
+                      className={`
+                        flex-shrink-0 w-14 h-14 rounded-full flex items-center justify-center
+                        font-bold text-xl transition-all duration-300 ring-2 ring-gray-800 
+                        ring-offset-2 ring-offset-black
+                        ${isActive 
+                          ? 'bg-red-500 text-white scale-125 shadow-xl shadow-red-500/70 ring-red-500' 
+                          : isCompleted 
+                          ? 'bg-red-500/70 text-white ring-red-500/50' 
+                          : 'bg-gray-800 text-gray-500 group-hover:bg-gray-700'
+                        }
+                      `}
+                    >
                       {stage.id}
                     </div>
                     <div className="flex-1 text-right">
-                      <h3 className={`
-                        font-cairo font-bold text-lg transition-colors
-                        ${index === activeStage
-                          ? 'text-red-500'
-                          : index < activeStage
-                          ? 'text-red-400'
-                          : 'text-gray-300 group-hover:text-white'
-                        }
-                      `}>
+                      <h3 
+                        className={`
+                          font-cairo font-bold text-xl transition-colors
+                          ${isActive 
+                            ? 'text-red-500' 
+                            : isCompleted 
+                            ? 'text-red-400' 
+                            : 'text-gray-300 group-hover:text-white'
+                          }
+                        `}
+                      >
                         {stage.titleAr}
                       </h3>
-                      <p className="text-xs text-gray-500 font-orbitron uppercase">
+                      <p 
+                        className={`
+                          text-sm font-orbitron uppercase transition-colors
+                          ${isActive ? 'text-red-400' : 'text-gray-500'}
+                        `}
+                      >
                         {stage.titleEn}
                       </p>
                     </div>
-                    {index === activeStage && (
-                      <div className="flex-shrink-0 w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                    {isActive && (
+                      <div className="flex-shrink-0">
+                        <div className="w-2 h-2 rounded-full bg-red-500 animate-pulse" />
+                      </div>
                     )}
                   </button>
-                ))}
-              </div>
+                );
+              })}
             </div>
           </div>
 
           {/* Content Cards */}
-          <div className="lg:col-span-8 space-y-24">
+          <div className="lg:col-span-8 space-y-16 lg:space-y-32">
             {stages.map((stage, index) => (
               <div
                 key={stage.id}
+                ref={(el) => { cardRefs.current[index] = el; }}
                 className="stage-card scroll-mt-32"
               >
                 <div className="relative group">
                   {/* Card Background with Glow */}
-                  <div className={`
-                    absolute -inset-1 rounded-2xl opacity-0 blur-xl transition-opacity duration-500
-                    ${index === activeStage ? 'opacity-20' : ''}
-                  `} style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }} />
+                  <div 
+                    className={`
+                      absolute -inset-1 rounded-2xl blur-xl transition-opacity duration-500
+                      ${index === activeStage ? 'opacity-20' : 'opacity-0'}
+                    `}
+                    style={{ background: 'linear-gradient(135deg, #ef4444, #dc2626)' }}
+                  />
                   
                   {/* Main Card */}
-                  <div className="relative bg-white/[0.02] backdrop-blur-xl border-2 border-white/10 rounded-2xl p-8 md:p-10 transition-all duration-500 shadow-2xl">
+                  <div 
+                    className={`
+                      relative bg-white/[0.02] backdrop-blur-xl border-2 rounded-xl lg:rounded-2xl p-6 md:p-8 lg:p-10 transition-all duration-500 shadow-2xl
+                      ${index === activeStage ? 'border-red-500/30 shadow-red-500/20' : 'border-white/10'}
+                    `}
+                  >
                     {/* Glass shine effect */}
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent pointer-events-none" />
                     {/* Corner Decorations */}

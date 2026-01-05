@@ -54,7 +54,7 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center py-20 px-4">
+    <section id="about" className="min-h-screen flex items-center justify-center py-12 sm:py-16 lg:py-20 px-4">
       <div className="max-w-6xl mx-auto w-full">
         {/* Main Heading */}
         <div className="text-center mb-12 relative">
