@@ -57,11 +57,11 @@ export default function AboutSection() {
     <section id="about" className="relative py-12 sm:py-16 md:py-20 px-4">
       <div className="max-w-6xl mx-auto w-full">
         {/* Main Heading */}
-        <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 relative">
+        <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 relative px-4">
           <div className="inline-block relative">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 hover-glitch relative z-10 font-cairo">
+            <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-2 hover-glitch relative z-10 font-cairo">
               <span className="text-red-500">عن كودكس</span>
-              <span className="text-white mx-3">|</span>
+              <span className="text-white mx-2 sm:mx-3">|</span>
               <span className="text-red-500">About Codex</span>
             </h1>
             {/* Status Indicator */}
@@ -132,7 +132,7 @@ export default function AboutSection() {
 
             <div className="absolute top-1.5 right-1.5 text-[9px] text-red-500/30 font-mono">02</div>
 
-            <div className="p-6 md:p-8 relative z-10 flex flex-col flex-1">
+            <div className="p-5 sm:p-6 md:p-8 relative z-10 flex flex-col flex-1">
               {/* Icon */}
               <div className="mb-4 flex justify-center">
                 <svg
@@ -170,7 +170,7 @@ export default function AboutSection() {
 
             <div className="absolute top-1.5 right-1.5 text-[9px] text-red-500/30 font-mono">03</div>
 
-            <div className="p-6 md:p-8 relative z-10 flex flex-col flex-1">
+            <div className="p-5 sm:p-6 md:p-8 relative z-10 flex flex-col flex-1">
               {/* Icon */}
               <div className="mb-4 flex justify-center">
                 <svg

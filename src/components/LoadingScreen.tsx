@@ -72,7 +72,7 @@ export default function LoadingScreen() {
         right: 0,
         bottom: 0,
         width: '100vw',
-        height: '100vh',
+        height: '100dvh',
         touchAction: 'none'
       }}
       suppressHydrationWarning
@@ -161,7 +161,7 @@ export default function LoadingScreen() {
               width={220}
               height={88}
               priority
-              className="relative z-10 sm:w-[280px] sm:h-[112px] md:w-[350px] md:h-[140px]"
+              className="relative z-10 w-40 sm:w-56 md:w-[280px] lg:w-[350px] h-auto"
               style={{
                 filter: 'drop-shadow(0 0 30px rgba(239, 68, 68, 0.9)) brightness(1.1)',
                 mixBlendMode: 'screen'

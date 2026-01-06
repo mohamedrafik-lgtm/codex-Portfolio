@@ -250,20 +250,20 @@ export default function SectorsSection() {
     >
       <div className="max-w-7xl mx-auto w-full">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="heading text-4xl md:text-5xl font-bold mb-4 text-red-500 font-orbitron">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16 px-4">
+          <h1 className="heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-red-500 font-orbitron">
             Targeted Sectors
           </h1>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-cairo">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 font-cairo">
             القطاعات المستهدفة
           </h2>
-          <p className="subtext text-sm text-gray-400 max-w-3xl mx-auto font-jetbrains">
+          <p className="subtext text-xs sm:text-sm text-gray-400 max-w-3xl mx-auto font-jetbrains">
             {'<'} MULTI-INDUSTRY SOLUTIONS {'>'} • {'<'} 7 STRATEGIC SECTORS {'>'} • {'<'} ENTERPRISE READY {'>'}
           </p>
         </div>
 
         {/* Sectors Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
           {sectors.map((sector, index) => (
             <div
               key={index}

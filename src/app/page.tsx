@@ -5,6 +5,7 @@ import dynamic from 'next/dynamic';
 import LoadingScreen from "@/components/LoadingScreen";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
+import StatsSection from "@/components/StatsSection";
 import ServicesSection from "@/components/ServicesSection";
 import SectorsSection from "@/components/SectorsSection";
 import ContractingModelsSection from "@/components/ContractingModelsSection";
@@ -66,12 +67,14 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="min-h-screen relative text-white" suppressHydrationWarning>
+    <main className="min-h-screen relative text-white overflow-x-hidden max-w-[100vw]" suppressHydrationWarning>
       <LoadingScreen />
       
       {/* Content - Hidden until loading completes */}
       <div 
-        className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        className={`transition-opacity duration-500 overflow-x-hidden max-w-[100vw] ${
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        }`}
         style={{ visibility: isLoaded ? 'visible' : 'hidden' }}
       >
         <ThreeBackground />
@@ -80,23 +83,24 @@ export default function Home() {
         <ScanlineOverlay />
       
       {/* Sections - Content Wrapper with proper z-index */}
-      <div className="relative pointer-events-none" style={{zIndex: 1}} suppressHydrationWarning>
-        <div className="pointer-events-auto">
+      <div className="relative pointer-events-none overflow-x-hidden max-w-[100vw]" style={{zIndex: 1}} suppressHydrationWarning>
+        <div className="pointer-events-auto overflow-x-hidden">
           <HeroSection />
           <AboutSection />
+          <StatsSection />
           <ServicesSection />
           <SectorsSection />
         </div>
         
-        <div className="pointer-events-auto">
+        <div className="pointer-events-auto overflow-x-hidden">
           <ContractingModelsSection />
         </div>
         
-        <div className="pointer-events-auto">
+        <div className="pointer-events-auto overflow-x-hidden">
           <TechStackSection />
         </div>
         
-        <div className="pointer-events-auto">
+        <div className="pointer-events-auto overflow-x-hidden">
           <ProcessSection />
         </div>
       </div>

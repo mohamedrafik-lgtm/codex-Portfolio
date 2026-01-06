@@ -86,7 +86,7 @@ export default function HeroSection() {
       )}
 
       {/* Content */}
-      <div className="relative z-10 text-center px-4" suppressHydrationWarning>
+      <div className="relative z-10 text-center px-4 py-8 sm:py-12" suppressHydrationWarning>
         {/* Logo Container */}
         <div ref={logoRef} className="mb-4" suppressHydrationWarning>
           <div className="relative inline-block">
@@ -106,7 +106,7 @@ export default function HeroSection() {
                 alt="CODEX Logo"
                 width={300}
                 height={120}
-                className="object-contain"
+                className="w-48 sm:w-56 md:w-64 lg:w-72 xl:w-80 h-auto object-contain"
                 style={{
                   mixBlendMode: 'screen',
                   filter: 'brightness(1.2) contrast(1.3) drop-shadow(0 0 30px rgba(239, 68, 68, 0.5))',
@@ -119,14 +119,14 @@ export default function HeroSection() {
         </div>
 
         {/* Text Content */}
-        <div ref={textRef} className="space-y-3" suppressHydrationWarning>
+        <div ref={textRef} className="space-y-3 px-4 pb-8" suppressHydrationWarning>
           {/* Arabic Tagline */}
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white font-cairo leading-tight">
+          <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-white font-cairo leading-tight text-center">
             نُحوّل <span className="text-red-500">الأفكار</span> إلى واقع رقمي
           </h1>
 
           {/* English Tagline */}
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-400 font-orbitron uppercase tracking-wider">
+          <p className="text-sm sm:text-base md:text-lg lg:text-xl xl:text-2xl text-gray-400 font-orbitron uppercase tracking-wider text-center">
             Transforming Ideas Into Digital Reality
           </p>
 
@@ -162,10 +162,10 @@ export default function HeroSection() {
       {/* Corner Accents */}
       {isMounted && (
         <>
-          <div className="absolute top-8 left-8 w-16 h-16 border-l-2 border-t-2 border-red-500/30" />
-          <div className="absolute top-8 right-8 w-16 h-16 border-r-2 border-t-2 border-red-500/30" />
-          <div className="absolute bottom-8 left-8 w-16 h-16 border-l-2 border-b-2 border-red-500/30" />
-          <div className="absolute bottom-8 right-8 w-16 h-16 border-r-2 border-b-2 border-red-500/30" />
+          <div className="absolute top-4 left-4 sm:top-8 sm:left-8 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 border-l-2 border-t-2 border-red-500/30" />
+          <div className="absolute top-4 right-4 sm:top-8 sm:right-8 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 border-r-2 border-t-2 border-red-500/30" />
+          <div className="absolute bottom-4 left-4 sm:bottom-8 sm:left-8 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 border-l-2 border-b-2 border-red-500/30" />
+          <div className="absolute bottom-4 right-4 sm:bottom-8 sm:right-8 w-8 h-8 sm:w-12 sm:h-12 md:w-16 md:h-16 border-r-2 border-b-2 border-red-500/30" />
         </>
       )}
     </section>

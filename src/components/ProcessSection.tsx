@@ -16,7 +16,11 @@ const stages = [
     titleEn: 'Analysis',
     descAr: 'نحلل احتياجاتك ونفهم رؤيتك بدقة لنضع أساساً قوياً للمشروع',
     descEn: 'We analyze your needs and understand your vision precisely',
-    icon: '🔍',
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+      </svg>
+    ),
     color: '#ef4444'
   },
   {
@@ -25,7 +29,11 @@ const stages = [
     titleEn: 'Design',
     descAr: 'نصمم واجهات مبتكرة تجمع بين الجمال والوظيفة',
     descEn: 'We design innovative interfaces combining beauty and function',
-    icon: '✏️',
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" />
+      </svg>
+    ),
     color: '#f59e0b'
   },
   {
@@ -34,7 +42,11 @@ const stages = [
     titleEn: 'Development',
     descAr: 'نبني حلول برمجية قوية وقابلة للتوسع بأحدث التقنيات',
     descEn: 'We build robust and scalable software solutions',
-    icon: '⚙️',
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+      </svg>
+    ),
     color: '#10b981'
   },
   {
@@ -43,7 +55,11 @@ const stages = [
     titleEn: 'Testing',
     descAr: 'نختبر كل تفصيل لضمان الجودة والأمان والأداء الأمثل',
     descEn: 'We test every detail to ensure quality and security',
-    icon: '🔬',
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+      </svg>
+    ),
     color: '#3b82f6'
   },
   {
@@ -52,7 +68,11 @@ const stages = [
     titleEn: 'Launch',
     descAr: 'نطلق مشروعك ونواصل الدعم والتطوير المستمر',
     descEn: 'We launch your project and continue support and development',
-    icon: '🚀',
+    icon: (
+      <svg className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
+      </svg>
+    ),
     color: '#8b5cf6'
   },
 ];
@@ -254,20 +274,20 @@ export default function ProcessSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16 px-4">
           <p className="text-xs text-red-500 mb-3 font-mono tracking-[0.3em] uppercase">
             {'<'} WORK PROCESS {'>'}
           </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 font-cairo">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4 font-cairo">
             مراحل <span className="text-red-500">العمل</span>
           </h2>
-          <p className="text-lg text-gray-400 font-cairo max-w-2xl mx-auto">
+          <p className="text-base sm:text-lg text-gray-400 font-cairo max-w-2xl mx-auto">
             من الفكرة إلى التنفيذ.. نسير معك خطوة بخطوة
           </p>
         </div>
 
         {/* 3D Pipeline Visualization */}
-        <div className="relative mb-20">
+        <div className="relative mb-12 sm:mb-16 md:mb-20 px-2 sm:px-4">
           {/* Connection Line */}
           <div className="absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-red-500/30 to-transparent transform -translate-y-1/2 hidden lg:block" suppressHydrationWarning>
             {isMounted && (
@@ -346,7 +366,16 @@ export default function ProcessSection() {
                     </div>
 
                     {/* Icon */}
-                    <div className="text-2xl sm:text-3xl text-center mb-2">
+                    <div 
+                      className={`
+                        flex items-center justify-center mb-3 sm:mb-4 transition-all duration-500
+                        ${index === activeStage ? 'scale-110' : 'scale-100'}
+                      `}
+                      style={{ 
+                        color: index === activeStage ? stage.color : index < activeStage ? stage.color + '80' : '#6b7280',
+                        filter: index === activeStage ? `drop-shadow(0 0 8px ${stage.color})` : 'none'
+                      }}
+                    >
                       {stage.icon}
                     </div>
 

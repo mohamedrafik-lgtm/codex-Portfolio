@@ -51,6 +51,9 @@ export default function ThreeBackground() {
     canvas.style.left = '0';
     canvas.style.width = '100%';
     canvas.style.height = '100%';
+    canvas.style.maxWidth = '100vw';
+    canvas.style.maxHeight = '100vh';
+    canvas.style.overflow = 'hidden';
     canvas.style.zIndex = '-1';
     
     containerRef.current.appendChild(canvas);
@@ -377,7 +380,7 @@ export default function ThreeBackground() {
   return (
     <div 
       ref={containerRef} 
-      className="fixed inset-0 w-full h-full" 
+      className="fixed inset-0 w-full h-full overflow-hidden" 
       style={{ 
         zIndex: -1,
         pointerEvents: 'none',
@@ -385,7 +388,9 @@ export default function ThreeBackground() {
         left: 0,
         right: 0,
         bottom: 0,
-        position: 'fixed'
+        position: 'fixed',
+        maxWidth: '100vw',
+        maxHeight: '100vh'
       }} 
     />
   );

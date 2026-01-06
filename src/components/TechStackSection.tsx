@@ -197,26 +197,26 @@ export default function TechStackSection() {
 
       <div className="max-w-[1100px] mx-auto px-4 w-full relative z-10">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="heading text-4xl md:text-5xl font-bold mb-4 text-red-500 font-orbitron">
+        <div className="text-center mb-10 sm:mb-12 md:mb-16 px-4">
+          <h1 className="heading text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4 text-red-500 font-orbitron">
             Technology Stack
           </h1>
-          <h2 className="text-3xl md:text-4xl font-bold mb-6 font-cairo">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-4 sm:mb-6 font-cairo">
             التقنيات المستخدمة
           </h2>
-          <p className="subtext text-sm text-gray-400 max-w-3xl mx-auto font-jetbrains">
+          <p className="subtext text-xs sm:text-sm text-gray-400 max-w-3xl mx-auto font-jetbrains">
             {'<'} CUTTING-EDGE INFRASTRUCTURE {'>'} • {'<'} AI-POWERED SOLUTIONS {'>'} • {'<'} ENTERPRISE-GRADE SECURITY {'>'}
           </p>
         </div>
 
         {/* Tech Grid */}
-        <div className="space-y-12">
+        <div className="space-y-8 sm:space-y-10 md:space-y-12">
           {/* Backend Core */}
           <div>
-            <h3 className="text-xs text-red-500 mb-4 tracking-wider font-jetbrains">
+            <h3 className="text-xs text-red-500 mb-3 sm:mb-4 tracking-wider font-jetbrains px-2">
               {'>'} BACKEND_CORE
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {techStack.backend.map((tech, idx) => (
                 <div
                   key={idx}
@@ -250,10 +250,10 @@ export default function TechStackSection() {
 
           {/* Frontend Web */}
           <div>
-            <h3 className="text-xs text-red-500 mb-4 tracking-wider font-jetbrains">
+            <h3 className="text-xs text-red-500 mb-3 sm:mb-4 tracking-wider font-jetbrains px-2">
               {'>'} FRONTEND_WEB
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {techStack.frontend.map((tech, idx) => (
                 <div
                   key={idx}
@@ -287,10 +287,10 @@ export default function TechStackSection() {
 
           {/* Mobile Development */}
           <div>
-            <h3 className="text-xs text-red-500 mb-4 tracking-wider font-jetbrains">
+            <h3 className="text-xs text-red-500 mb-3 sm:mb-4 tracking-wider font-jetbrains px-2">
               {'>'} MOBILE_DEVELOPMENT
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
               {techStack.mobile.map((tech, idx) => (
                 <div
                   key={idx}
@@ -324,10 +324,10 @@ export default function TechStackSection() {
 
           {/* Specialized Hubs */}
           <div>
-            <h3 className="text-xs text-red-500 mb-4 tracking-wider font-jetbrains">
+            <h3 className="text-xs text-red-500 mb-3 sm:mb-4 tracking-wider font-jetbrains px-2">
               {'>'} SPECIALIZED_HUBS
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
               {techStack.specialized.map((tech, idx) => (
                 <div
                   key={idx}

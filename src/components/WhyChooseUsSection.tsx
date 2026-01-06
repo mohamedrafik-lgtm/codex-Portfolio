@@ -93,11 +93,11 @@ export default function WhyChooseUsSection() {
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
-        <div className="text-center mb-12 lg:mb-16">
+        <div className="text-center mb-8 sm:mb-10 md:mb-12 lg:mb-16 px-4">
           <p className="text-xs text-red-500 mb-3 font-mono tracking-[0.3em] uppercase">
             WHY CHOOSE US
           </p>
-          <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold text-white mb-4 font-cairo">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-3 sm:mb-4 font-cairo">
             لماذا <span className="text-red-500">نحن</span>
           </h2>
           <p className="text-lg text-gray-400 font-cairo max-w-2xl mx-auto">

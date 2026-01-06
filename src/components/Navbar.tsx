@@ -78,13 +78,14 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 w-full transition-all duration-300 ${
           isScrolled ? 'bg-black/60 backdrop-blur-[20px]' : 'bg-black/40 backdrop-blur-[15px]'
         }`}
         style={{
           borderBottom: '0.5px solid rgba(255, 0, 0, 0.3)',
           boxShadow: isScrolled ? '0 1px 20px rgba(255, 0, 0, 0.2)' : '0 1px 10px rgba(255, 0, 0, 0.1)',
-          zIndex: 9999,
+          zIndex: 10000,
+          maxWidth: '100vw'
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -104,7 +105,7 @@ export default function Navbar() {
                   alt="CODEX Logo"
                   width={140}
                   height={56}
-                  className="object-contain transition-all duration-300 ease-in-out logo-image"
+                  className="w-24 sm:w-28 md:w-32 lg:w-36 h-auto object-contain transition-all duration-300 ease-in-out logo-image"
                   style={{ 
                     mixBlendMode: 'screen',
                     filter: 'brightness(1.1) contrast(1.2)'
@@ -177,7 +178,7 @@ export default function Navbar() {
       <div
         ref={menuRef}
         className="fixed inset-y-0 right-0 w-full sm:w-80 bg-black/95 backdrop-blur-xl lg:hidden transform translate-x-full opacity-0"
-        style={{ direction: 'rtl', zIndex: 9998 }}
+        style={{ direction: 'rtl', zIndex: 99999 }}
       >
         <div className="flex flex-col h-full pt-24 px-6 pb-6">
           <div className="flex-1 space-y-2 overflow-y-auto">
@@ -208,7 +209,7 @@ export default function Navbar() {
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/60 lg:hidden backdrop-blur-sm"
-          style={{ zIndex: 9997 }}
+          style={{ zIndex: 99998 }}
           onClick={() => setIsOpen(false)}
         />
       )}
