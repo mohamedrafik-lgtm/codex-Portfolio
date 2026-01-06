@@ -218,54 +218,6 @@ export const projectsData: Project[] = [
     ),
   },
   {
-    id: 'equipment-tracking',
-    titleEn: 'Equipment & Machinery Tracking',
-    titleAr: 'تتبع المعدات والآلات',
-    shortDescEn: 'IoT-enabled equipment tracking with maintenance scheduling and performance analytics',
-    shortDescAr: 'تتبع المعدات بتقنية IoT مع جدولة الصيانة وتحليلات الأداء',
-    fullDetailsEn: 'An IoT-powered equipment and machinery tracking system that provides real-time location monitoring, predictive maintenance alerts, and comprehensive performance analytics. The platform uses sensor data and machine learning to predict equipment failures before they occur, optimizing maintenance schedules and maximizing asset uptime. Integration with GPS and RFID technologies ensures accurate tracking across multiple sites.',
-    fullDetailsAr: 'نظام تتبع المعدات والآلات المدعوم بإنترنت الأشياء الذي يوفر مراقبة الموقع في الوقت الفعلي وتنبيهات الصيانة التنبؤية وتحليلات الأداء الشاملة. تستخدم المنصة بيانات المستشعرات والتعلم الآلي للتنبؤ بأعطال المعدات قبل حدوثها، وتحسين جداول الصيانة وزيادة وقت تشغيل الأصول. يضمن التكامل مع تقنيات GPS و RFID التتبع الدقيق عبر مواقع متعددة.',
-    challengesSolved: {
-      en: [
-        'Difficulty locating equipment across multiple sites',
-        'Reactive maintenance leading to unexpected downtime',
-        'Lack of usage analytics for asset optimization',
-        'Manual maintenance record keeping',
-        'No visibility into equipment performance metrics'
-      ],
-      ar: [
-        'صعوبة تحديد موقع المعدات عبر مواقع متعددة',
-        'الصيانة التفاعلية المؤدية إلى توقف غير متوقع',
-        'عدم وجود تحليلات الاستخدام لتحسين الأصول',
-        'حفظ سجلات الصيانة اليدوية',
-        'لا رؤية لمقاييس أداء المعدات'
-      ]
-    },
-    technologies: ['Laravel', 'Next.js', 'PostgreSQL', 'IoT'],
-    achievements: {
-      en: [
-        'Reduced equipment downtime by 65%',
-        'Increased asset utilization by 45%',
-        'Lowered maintenance costs by 30%',
-        'Improved equipment lifespan by 25%',
-        'Achieved 98% preventive maintenance compliance'
-      ],
-      ar: [
-        'تقليل وقت توقف المعدات بنسبة 65٪',
-        'زيادة استخدام الأصول بنسبة 45٪',
-        'تخفيض تكاليف الصيانة بنسبة 30٪',
-        'تحسين عمر المعدات بنسبة 25٪',
-        'تحقيق امتثال الصيانة الوقائية بنسبة 98٪'
-      ]
-    },
-    features: ['Real-time Location', 'Maintenance Alerts', 'Usage Analytics', 'Asset Management'],
-    icon: (
-      <svg className="w-12 h-12 md:w-14 md:h-14" fill="currentColor" viewBox="0 0 24 24">
-        <path d="M22.7 19l-9.1-9.1c.9-2.3.4-5-1.5-6.9-2-2-5-2.4-7.4-1.3L9 6 6 9 1.6 4.7C.4 7.1.9 10.1 2.9 12.1c1.9 1.9 4.6 2.4 6.9 1.5l9.1 9.1c.4.4 1 .4 1.4 0l2.3-2.3c.5-.4.5-1.1.1-1.4z" />
-      </svg>
-    ),
-  },
-  {
     id: 'invoicing-system',
     titleEn: 'Invoicing & Payment Certificates',
     titleAr: 'الفواتير ومستخلصات الدفع',
@@ -307,6 +259,7 @@ export const projectsData: Project[] = [
       ]
     },
     features: ['Auto Invoicing', 'Payment Tracking', 'Certificate Generation', 'Tax Compliance'],
+    image: '/img/unnamed (10).jpg',
     icon: (
       <svg className="w-12 h-12 md:w-14 md:h-14" fill="currentColor" viewBox="0 0 24 24">
         <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 3c1.93 0 3.5 1.57 3.5 3.5S13.93 13 12 13s-3.5-1.57-3.5-3.5S10.07 6 12 6zm7 13H5v-.23c0-.62.28-1.2.76-1.58C7.47 15.82 9.64 15 12 15s4.53.82 6.24 2.19c.48.38.76.97.76 1.58V19z" />

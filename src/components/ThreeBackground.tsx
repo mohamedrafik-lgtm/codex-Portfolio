@@ -21,7 +21,8 @@ export default function ThreeBackground() {
   const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (!containerRef.current) return undefined;
+    // Only run on client side
+    if (typeof window === 'undefined' || !containerRef.current) return undefined;
 
     const scene = new THREE.Scene();
     scene.background = new THREE.Color(0x000000); // Black background for Three.js canvas

@@ -186,7 +186,7 @@ export default function TechStackSection() {
     <section
       id="tech"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center py-20 relative"
+      className="relative py-16 sm:py-20"
     >
       {/* Connection Canvas */}
       <canvas

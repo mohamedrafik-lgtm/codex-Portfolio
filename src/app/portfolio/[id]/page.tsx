@@ -79,7 +79,6 @@ export default function ProjectDetailPage() {
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.6, delay: 0.2 }}
               className="relative w-full h-[300px] md:h-[450px] lg:h-[550px] mb-8 rounded-lg overflow-hidden border border-red-500/20 bg-black/60"
-              suppressHydrationWarning
             >
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent z-10"></div>
               <Image
@@ -88,7 +87,6 @@ export default function ProjectDetailPage() {
                 fill
                 className="object-contain"
                 priority
-                suppressHydrationWarning
               />
               {/* HUD Corners */}
               <div className="absolute top-2 left-2 w-8 h-8 border-l-2 border-t-2 border-red-500 z-20"></div>

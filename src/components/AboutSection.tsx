@@ -54,19 +54,19 @@ export default function AboutSection() {
   };
 
   return (
-    <section id="about" className="min-h-screen flex items-center justify-center py-12 sm:py-16 lg:py-20 px-4">
+    <section id="about" className="relative py-12 sm:py-16 md:py-20 px-4">
       <div className="max-w-6xl mx-auto w-full">
         {/* Main Heading */}
-        <div className="text-center mb-12 relative">
+        <div className="text-center mb-6 sm:mb-8 md:mb-10 lg:mb-12 relative">
           <div className="inline-block relative">
-            <h1 className="text-4xl md:text-5xl font-bold mb-2 hover-glitch relative z-10 font-cairo">
+            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-2 hover-glitch relative z-10 font-cairo">
               <span className="text-red-500">عن كودكس</span>
               <span className="text-white mx-3">|</span>
               <span className="text-red-500">About Codex</span>
             </h1>
             {/* Status Indicator */}
-            <div className="absolute -top-3 -right-3 flex items-center gap-1.5">
-              <span className="text-[10px] text-red-500 font-mono">STATUS</span>
+            <div className="absolute -top-2 sm:-top-3 -right-2 sm:-right-3 flex items-center gap-1 sm:gap-1.5">
+              <span className="text-[8px] sm:text-[10px] text-red-500 font-mono">STATUS</span>
               <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(255,0,0,0.8)]"></div>
             </div>
           </div>
@@ -76,11 +76,11 @@ export default function AboutSection() {
         </div>
 
         {/* Three Card Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 gap-4 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 md:gap-8 items-start max-w-6xl mx-auto">
           {/* Card 1: Who We Are */}
           <div
             ref={addToRefs}
-            className="about-card card group relative overflow-hidden backdrop-blur-md md:mt-8 max-w-[350px] mx-auto w-full"
+            className="about-card card group relative overflow-hidden backdrop-blur-md w-full h-full flex flex-col"
           >
             {/* HUD Corner Brackets - Ultra-thin */}
             <div className="absolute top-0 left-0 w-4 h-4 border-l border-t border-red-500 border-thin"></div>
@@ -91,9 +91,9 @@ export default function AboutSection() {
             {/* Decorative Numbers */}
             <div className="absolute top-1.5 right-1.5 text-[9px] text-red-500/30 font-mono">01</div>
 
-            <div className="p-6 relative z-10">
+            <div className="p-5 sm:p-6 md:p-8 relative z-10 flex flex-col flex-1">
               {/* Icon - Smaller */}
-              <div className="mb-4 flex justify-center">
+              <div className="mb-3 sm:mb-4 flex justify-center">
                 <svg
                   className="w-10 h-10 text-red-500 group-hover:scale-110 transition-transform duration-300 icon-glow"
                   fill="currentColor"
@@ -104,16 +104,16 @@ export default function AboutSection() {
               </div>
 
               {/* Arabic Title */}
-              <h3 className="text-lg font-bold text-red-500 mb-1.5 text-center font-cairo">من نحن</h3>
-              <div className="h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mb-3"></div>
+              <h3 className="text-base sm:text-lg font-bold text-red-500 mb-1.5 text-center font-cairo">من نحن</h3>
+              <div className="h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mb-2 sm:mb-3"></div>
               {/* English Title */}
-              <h4 className="text-sm font-semibold text-white/80 mb-3 text-center">Who We Are</h4>
+              <h4 className="text-xs sm:text-sm font-semibold text-white/80 mb-2 sm:mb-3 text-center">Who We Are</h4>
 
               {/* Content - Technical Documentation Style */}
-              <p className="text-gray-300 text-xs leading-relaxed text-center tech-text">
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed text-center tech-text">
                 نحن فريق متخصص في تطوير الحلول البرمجية المتكاملة والذكاء الاصطناعي، نجمع بين الابتكار والتكنولوجيا المتقدمة لتقديم حلول استثنائية.
               </p>
-              <p className="text-gray-400 text-[10px] leading-relaxed text-center mt-2 italic tech-subtext">
+              <p className="text-gray-400 text-[9px] sm:text-[10px] leading-relaxed text-center mt-1.5 sm:mt-2 italic tech-subtext">
                 We specialize in integrated software & AI solutions, combining innovation with cutting-edge technology.
               </p>
             </div>
@@ -122,17 +122,17 @@ export default function AboutSection() {
           {/* Card 2: Target Sectors */}
           <div
             ref={addToRefs}
-            className="about-card card group relative overflow-hidden backdrop-blur-md max-w-[350px] mx-auto w-full"
+            className="about-card card group relative overflow-hidden backdrop-blur-md w-full h-full flex flex-col"
           >
             {/* HUD Corner Brackets */}
-            <div className="absolute top-0 left-0 w-4 h-4 border-l border-t border-red-500" style={{ borderWidth: '0.5px' }}></div>
-            <div className="absolute top-0 right-0 w-4 h-4 border-r border-t border-red-500" style={{ borderWidth: '0.5px' }}></div>
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-l border-b border-red-500" style={{ borderWidth: '0.5px' }}></div>
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-r border-b border-red-500" style={{ borderWidth: '0.5px' }}></div>
+            <div className="absolute top-0 left-0 w-4 h-4 border-l border-t border-red-500 border-thin"></div>
+            <div className="absolute top-0 right-0 w-4 h-4 border-r border-t border-red-500 border-thin"></div>
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-l border-b border-red-500 border-thin"></div>
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-r border-b border-red-500 border-thin"></div>
 
             <div className="absolute top-1.5 right-1.5 text-[9px] text-red-500/30 font-mono">02</div>
 
-            <div className="p-6 relative z-10">
+            <div className="p-6 md:p-8 relative z-10 flex flex-col flex-1">
               {/* Icon */}
               <div className="mb-4 flex justify-center">
                 <svg
@@ -160,17 +160,17 @@ export default function AboutSection() {
           {/* Card 3: The Impact */}
           <div
             ref={addToRefs}
-            className="about-card card group relative overflow-hidden backdrop-blur-md md:mt-8 max-w-[350px] mx-auto w-full"
+            className="about-card card group relative overflow-hidden backdrop-blur-md w-full h-full flex flex-col"
           >
             {/* HUD Corner Brackets */}
-            <div className="absolute top-0 left-0 w-4 h-4 border-l border-t border-red-500" style={{ borderWidth: '0.5px' }}></div>
-            <div className="absolute top-0 right-0 w-4 h-4 border-r border-t border-red-500" style={{ borderWidth: '0.5px' }}></div>
-            <div className="absolute bottom-0 left-0 w-4 h-4 border-l border-b border-red-500" style={{ borderWidth: '0.5px' }}></div>
-            <div className="absolute bottom-0 right-0 w-4 h-4 border-r border-b border-red-500" style={{ borderWidth: '0.5px' }}></div>
+            <div className="absolute top-0 left-0 w-4 h-4 border-l border-t border-red-500 border-thin"></div>
+            <div className="absolute top-0 right-0 w-4 h-4 border-r border-t border-red-500 border-thin"></div>
+            <div className="absolute bottom-0 left-0 w-4 h-4 border-l border-b border-red-500 border-thin"></div>
+            <div className="absolute bottom-0 right-0 w-4 h-4 border-r border-b border-red-500 border-thin"></div>
 
             <div className="absolute top-1.5 right-1.5 text-[9px] text-red-500/30 font-mono">03</div>
 
-            <div className="p-6 relative z-10">
+            <div className="p-6 md:p-8 relative z-10 flex flex-col flex-1">
               {/* Icon */}
               <div className="mb-4 flex justify-center">
                 <svg
@@ -207,7 +207,7 @@ export default function AboutSection() {
       </div>
 
       {/* Glitch Effect CSS */}
-      <style jsx>{`
+      <style jsx suppressHydrationWarning>{`
         .hover-glitch {
           position: relative;
         }

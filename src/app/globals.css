@@ -21,6 +21,7 @@ body {
   padding: 0;
   overflow-x: hidden;
   min-height: 100vh;
+  padding-top: 0 !important;
 }
 
 html {
@@ -43,6 +44,33 @@ html {
 section {
   background: transparent !important; /* All sections transparent */
   position: relative;
+  /* Ensure sections don't create new stacking context that blocks navbar */
+  isolation: auto;
+  /* Remove unnecessary spacing */
+  margin-top: 0 !important;
+}
+
+/* First section should start right after navbar */
+section:first-of-type {
+  padding-top: 4.5rem !important;
+}
+
+@media (min-width: 640px) {
+  section:first-of-type {
+    padding-top: 5rem !important;
+  }
+}
+
+@media (min-width: 768px) {
+  section:first-of-type {
+    padding-top: 5.5rem !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  section:first-of-type {
+    padding-top: 6rem !important;
+  }
 }
 
 * {
@@ -132,10 +160,10 @@ section[id] {
   visibility: visible;
 }
 
-/* Content Layer - Ensure it's above Three.js */
+/* Content Layer - Ensure it's above Three.js but below Navbar */
 main > div {
   position: relative;
-  z-index: 10;
+  z-index: 1;
   overflow: visible !important; /* Prevent clipping */
 }
 
@@ -163,6 +191,19 @@ a {
   overflow: visible !important; /* Prevent clipping */
   position: relative;
   z-index: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Ensure consistent spacing for about cards */
+#about .grid {
+  align-items: stretch;
+}
+
+#about .about-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 /* Ensure all cards are visible by default if animation fails */
@@ -209,7 +250,7 @@ a {
 .scanline-overlay {
   position: fixed;
   inset: 0;
-  z-index: 55;
+  z-index: 10;
   pointer-events: none;
   opacity: 0;
   background: 
@@ -234,4 +275,95 @@ a {
   .about-card {
     margin-bottom: 20px;
   }
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  section {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  .max-w-6xl,
+  .max-w-7xl {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
+  
+  h1, h2 {
+    line-height: 1.2;
+  }
+  
+  /* Improve card spacing on mobile */
+  .about-card {
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  section {
+    padding-top: 2rem !important;
+    padding-bottom: 2rem !important;
+  }
+  
+  section:first-of-type {
+    padding-top: 4rem !important;
+  }
+  
+  body {
+    font-size: 14px;
+  }
+  
+  /* Tighter spacing on very small screens */
+  .grid {
+    gap: 0.75rem !important;
+  }
+  
+  h1 {
+    font-size: 1.5rem !important;
+  }
+  
+  h2 {
+    font-size: 1.25rem !important;
+  }
+}
+
+
+/* Z-Index Hierarchy */
+/* 
+  -1: ThreeBackground
+  1: Main content sections
+  10: Scanline overlay
+  9997: Mobile menu backdrop
+  9998: Mobile menu
+  9999: Navbar
+*/
+
+/* Ensure Navbar is always on top */
+nav {
+  z-index: 9999 !important;
+  position: fixed !important;
+  isolation: isolate;
+}
+
+/* Ensure main doesn't interfere with fixed navbar */
+main {
+  isolation: auto;
+}
+
+/* Process Section Sidebar Fix */
+.stage-card {
+  position: relative;
+  z-index: 1;
+}
+
+/* Ensure Process Section sidebar is visible */
+#workflow .lg\:sticky {
+  position: sticky;
+  visibility: visible !important;
+  opacity: 1;
+}
+
+#workflow button {
+  visibility: visible !important;
 }

@@ -27,6 +27,10 @@ const cairo = Cairo({
 export const metadata: Metadata = {
   title: "CODEX - Portfolio",
   description: "High-Tech Cyberpunk Portfolio",
+  icons: {
+    icon: '/favicon.png',
+    apple: '/favicon.png',
+  },
 };
 
 export default function RootLayout({

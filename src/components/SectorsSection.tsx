@@ -4,7 +4,9 @@ import { useEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
 import { TextPlugin } from 'gsap/TextPlugin';
 
-gsap.registerPlugin(TextPlugin);
+if (typeof window !== 'undefined') {
+  gsap.registerPlugin(TextPlugin);
+}
 
 const sectors = [
   {
@@ -145,76 +147,70 @@ export default function SectorsSection() {
       const handleMouseEnter = () => {
         setHoveredIndex(index);
 
-        // Icon animation
+        // Icon animation - pulse and glow
         if (icon) {
           gsap.to(icon, {
-            rotation: 360,
-            scale: 1.15,
-            duration: 0.6,
-            ease: 'power2.out',
+            scale: 1.2,
+            filter: 'drop-shadow(0 0 12px rgba(255, 0, 0, 0.8))',
+            duration: 0.5,
+            ease: 'back.out(1.7)',
           });
         }
 
-        // Card glow
+        // Card glow and lift
         gsap.to(card, {
-          boxShadow: '0 0 40px rgba(255, 0, 0, 0.5), inset 0 0 30px rgba(255, 0, 0, 0.1)',
-          scale: 1.03,
-          y: -5,
-          duration: 0.3,
-          ease: 'power2.out',
+          boxShadow: '0 10px 60px rgba(255, 0, 0, 0.6), inset 0 0 40px rgba(255, 0, 0, 0.15)',
+          scale: 1.05,
+          y: -8,
+          duration: 0.4,
+          ease: 'power3.out',
         });
 
-        // Show features with scramble
-        if (features && titleEn) {
-          const originalText = titleEn.textContent || '';
-          const scrambled = originalText.split('').map(() => 
-            ['X', '0', '1', '#', '*'][Math.floor(Math.random() * 5)]
-          ).join('');
-
-          titleEn.textContent = scrambled;
-          
-          gsap.to(titleEn, {
-            duration: 0.3,
-            text: {
-              value: originalText,
-              delimiter: '',
-            },
-            ease: 'none',
-          });
-
+        // Show features with smooth slide
+        if (features) {
           gsap.to(features, {
             opacity: 1,
             height: 'auto',
             y: 0,
-            duration: 0.4,
+            duration: 0.5,
             ease: 'power3.out',
           });
         }
 
-        // Emit event for background
+        // Title glow effect
+        if (titleEn) {
+          gsap.to(titleEn, {
+            textShadow: '0 0 15px rgba(255, 0, 0, 0.8), 0 0 30px rgba(255, 0, 0, 0.4)',
+            duration: 0.3,
+          });
+        }
+
         window.dispatchEvent(new CustomEvent('card-hover', { detail: { active: true } }));
       };
 
       const handleMouseLeave = () => {
         setHoveredIndex(null);
 
+        // Icon reset
         if (icon) {
           gsap.to(icon, {
-            rotation: 0,
             scale: 1,
+            filter: 'drop-shadow(0 0 0px rgba(255, 0, 0, 0))',
             duration: 0.4,
             ease: 'power2.out',
           });
         }
 
+        // Card reset
         gsap.to(card, {
           boxShadow: '0 4px 20px rgba(255, 0, 0, 0.25)',
           scale: 1,
           y: 0,
-          duration: 0.3,
+          duration: 0.4,
           ease: 'power2.out',
         });
 
+        // Hide features
         if (features) {
           gsap.to(features, {
             opacity: 0,
@@ -222,6 +218,14 @@ export default function SectorsSection() {
             y: -10,
             duration: 0.3,
             ease: 'power3.in',
+          });
+        }
+
+        // Title reset
+        if (titleEn) {
+          gsap.to(titleEn, {
+            textShadow: '0 0 0px rgba(255, 0, 0, 0)',
+            duration: 0.3,
           });
         }
 
@@ -242,7 +246,7 @@ export default function SectorsSection() {
     <section
       id="sectors"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center py-20 px-4"
+      className="relative py-16 sm:py-20 px-4"
     >
       <div className="max-w-7xl mx-auto w-full">
         {/* Header */}

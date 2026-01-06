@@ -5,7 +5,7 @@ import gsap from 'gsap';
 
 const models = [
   {
-    number: '1️⃣',
+    code: 'MDL_01',
     title: 'Cloud Solutions (SaaS Model)',
     titleAr: 'الحلول السحابية (SaaS)',
     features: [
@@ -13,9 +13,14 @@ const models = [
       { en: 'Global Access', ar: 'الوصول من أي مكان' },
       { en: 'Flexible Features & Users', ar: 'مرونة في الخصائص وعدد المستخدمين' },
     ],
+    icon: (
+      <svg className="w-14 h-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 15a4 4 0 004 4h9a5 5 0 10-.1-9.999 5.002 5.002 0 10-9.78 2.096A4.001 4.001 0 003 15z" />
+      </svg>
+    ),
   },
   {
-    number: '2️⃣',
+    code: 'MDL_02',
     title: 'Perpetual Licensing',
     titleAr: 'التملك الكامل للرخصة',
     features: [
@@ -23,9 +28,14 @@ const models = [
       { en: 'Complete Privacy', ar: 'خصوصية قصوى للبيانات' },
       { en: 'Optional Maintenance SLA', ar: 'عقود صيانة اختيارية' },
     ],
+    icon: (
+      <svg className="w-14 h-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+      </svg>
+    ),
   },
   {
-    number: '3️⃣',
+    code: 'MDL_03',
     title: 'Custom-Built Solutions',
     titleAr: 'الحلول المخصصة',
     features: [
@@ -33,14 +43,25 @@ const models = [
       { en: 'Full Workflow Integration', ar: 'مطابق لدورة العمل الداخلية' },
       { en: 'Delivered in Milestones', ar: 'تسليم المشروع على مراحل' },
     ],
+    icon: (
+      <svg className="w-14 h-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+      </svg>
+    ),
   },
   {
-    number: '4️⃣',
+    code: 'MDL_04',
     title: 'Dedicated Team Model',
     titleAr: 'نموذج الشراكة الاستراتيجية',
     features: [
       { en: 'Exclusive Team', ar: 'فريق حصري للمشروع' },
     ],
+    icon: (
+      <svg className="w-14 h-14" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+      </svg>
+    ),
   },
 ];
 
@@ -51,12 +72,25 @@ export default function ContractingModelsSection() {
     cardsRef.current.forEach((card) => {
       if (!card) return;
 
+      const icon = card.querySelector('.model-icon');
+
       const handleMouseEnter = () => {
+        // Icon animation
+        if (icon) {
+          gsap.to(icon, {
+            rotation: 360,
+            scale: 1.2,
+            duration: 0.6,
+            ease: 'power2.out',
+          });
+        }
+
+        // Card animation
         gsap.to(card, {
-          y: -8,
-          scale: 1.02,
-          boxShadow: '0 10px 40px rgba(255, 0, 0, 0.3)',
-          duration: 0.3,
+          y: -10,
+          scale: 1.03,
+          boxShadow: '0 15px 50px rgba(255, 0, 0, 0.4), 0 0 30px rgba(255, 0, 0, 0.2)',
+          duration: 0.4,
           ease: 'power2.out',
         });
 
@@ -64,6 +98,17 @@ export default function ContractingModelsSection() {
       };
 
       const handleMouseLeave = () => {
+        // Icon reset
+        if (icon) {
+          gsap.to(icon, {
+            rotation: 0,
+            scale: 1,
+            duration: 0.4,
+            ease: 'power2.out',
+          });
+        }
+
+        // Card reset
         gsap.to(card, {
           y: 0,
           scale: 1,
@@ -88,7 +133,7 @@ export default function ContractingModelsSection() {
   return (
     <section
       id="models"
-      className="min-h-screen flex items-center justify-center py-20"
+      className="relative py-16 sm:py-20"
     >
       <div className="max-w-6xl mx-auto px-4 w-full">
         {/* Header */}
@@ -121,8 +166,16 @@ export default function ContractingModelsSection() {
               <div className="absolute bottom-0 left-0 w-3 h-3 border-l border-b border-red-500/80" />
               <div className="absolute bottom-0 right-0 w-3 h-3 border-r border-b border-red-500/80" />
 
-              {/* Number Badge */}
-              <div className="text-3xl mb-4">{model.number}</div>
+              {/* Status Indicator */}
+              <div className="absolute top-2 right-2 flex items-center gap-1.5">
+                <span className="text-[9px] text-red-500 font-mono">{model.code}</span>
+                <div className="w-1.5 h-1.5 bg-red-500 rounded-full animate-pulse shadow-[0_0_8px_rgba(255,0,0,0.8)]"></div>
+              </div>
+
+              {/* Icon */}
+              <div className="model-icon mb-4 text-red-500 flex justify-center">
+                {model.icon}
+              </div>
 
               {/* Title */}
               <h3 className="text-xl font-semibold text-red-500 mb-2 font-orbitron">

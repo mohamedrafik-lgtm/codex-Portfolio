@@ -133,7 +133,7 @@ export default function ServicesSection() {
     <section
       id="services"
       ref={sectionRef}
-      className="min-h-screen flex items-center justify-center py-20"
+      className="relative py-16 sm:py-20 px-4"
     >
       <div className="max-w-6xl mx-auto px-4 w-full">
         {/* Header */}

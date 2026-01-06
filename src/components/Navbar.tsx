@@ -1,17 +1,17 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
+import { useRouter, usePathname } from 'next/navigation';
 import gsap from 'gsap';
 import Image from 'next/image';
 import logo from '../img/e1cd77fa-4af0-412f-8ab7-f8635cbad038_removalai_preview.png';
 
 const navLinks = [
+  { id: 'home', label: 'الرئيسية', type: 'scroll' },
   { id: 'about', label: 'من نحن', type: 'scroll' },
   { id: 'services', label: 'الخدمات الأساسية', type: 'scroll' },
   { id: 'sectors', label: 'القطاعات المستهدفة', type: 'scroll' },
-  { id: 'models', label: 'نماذج الأعمال', type: 'scroll' },
   { id: 'portfolio', label: 'الأعمال السابقة', type: 'link' },
-  { id: 'tech', label: 'التقنيات المستخدمة', type: 'scroll' },
   { id: 'workflow', label: 'طريقة العمل', type: 'scroll' },
   { id: 'team', label: 'فريق العمل', type: 'scroll' },
   { id: 'why', label: 'لماذا نحن', type: 'scroll' },
@@ -22,6 +22,8 @@ export default function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const navRef = useRef<HTMLElement>(null);
+  const router = useRouter();
+  const pathname = usePathname();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -53,13 +55,21 @@ export default function Navbar() {
 
   const handleNavClick = (id: string, type: string) => {
     if (type === 'link') {
-      window.location.href = `/${id}`;
+      router.push(`/${id}`);
       setIsOpen(false);
     } else {
-      const element = document.getElementById(id);
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      // If we're on a different page (not home), navigate to home first
+      if (pathname !== '/') {
+        // Navigate to home with hash
+        router.push(`/#${id}`);
         setIsOpen(false);
+      } else {
+        // We're on home page, just scroll
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          setIsOpen(false);
+        }
       }
     }
   };
@@ -68,12 +78,13 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 left-0 right-0 transition-all duration-300 ${
           isScrolled ? 'bg-black/60 backdrop-blur-[20px]' : 'bg-black/40 backdrop-blur-[15px]'
         }`}
         style={{
           borderBottom: '0.5px solid rgba(255, 0, 0, 0.3)',
           boxShadow: isScrolled ? '0 1px 20px rgba(255, 0, 0, 0.2)' : '0 1px 10px rgba(255, 0, 0, 0.1)',
+          zIndex: 9999,
         }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -81,8 +92,12 @@ export default function Navbar() {
             {/* Logo */}
             <div className="flex-shrink-0">
               <a
-                href="#"
+                href="#home"
                 className="flex items-center group"
+                onClick={(e) => {
+                  e.preventDefault();
+                  handleNavClick('home', 'scroll');
+                }}
               >
                 <Image
                   src={logo}
@@ -161,8 +176,8 @@ export default function Navbar() {
       {/* Mobile Menu Overlay */}
       <div
         ref={menuRef}
-        className="fixed inset-y-0 right-0 z-40 w-full sm:w-80 bg-black/95 backdrop-blur-xl lg:hidden transform translate-x-full opacity-0"
-        style={{ direction: 'rtl' }}
+        className="fixed inset-y-0 right-0 w-full sm:w-80 bg-black/95 backdrop-blur-xl lg:hidden transform translate-x-full opacity-0"
+        style={{ direction: 'rtl', zIndex: 9998 }}
       >
         <div className="flex flex-col h-full pt-24 px-6 pb-6">
           <div className="flex-1 space-y-2 overflow-y-auto">
@@ -192,7 +207,8 @@ export default function Navbar() {
       {/* Mobile Menu Backdrop */}
       {isOpen && (
         <div
-          className="fixed inset-0 bg-black/60 z-30 lg:hidden backdrop-blur-sm"
+          className="fixed inset-0 bg-black/60 lg:hidden backdrop-blur-sm"
+          style={{ zIndex: 9997 }}
           onClick={() => setIsOpen(false)}
         />
       )}

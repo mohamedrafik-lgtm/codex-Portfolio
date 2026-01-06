@@ -1,6 +1,9 @@
 'use client';
 
+import { useEffect, useState } from 'react';
 import dynamic from 'next/dynamic';
+import LoadingScreen from "@/components/LoadingScreen";
+import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
 import ServicesSection from "@/components/ServicesSection";
 import SectorsSection from "@/components/SectorsSection";
@@ -19,16 +22,67 @@ const ScrollAnimations = dynamic(() => import("@/components/ScrollAnimations"), 
 const ScanlineOverlay = dynamic(() => import("@/components/ScanlineOverlay"), { ssr: false });
 
 export default function Home() {
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Ensure page starts at the top
+  useEffect(() => {
+    // Force scroll to top immediately on mount
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }, []);
+
+  // Handle hash navigation when coming from other pages
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      // Wait for LoadingScreen to disappear and page to render
+      setTimeout(() => {
+        const id = hash.replace('#', '');
+        const element = document.getElementById(id);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 3000); // Wait for loading screen (2000ms) + 800ms fade + buffer
+    } else {
+      // No hash - ensure we stay at the top after loading
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 2600);
+    }
+  }, []);
+
+  // Show content after loading screen finishes
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoaded(true);
+      // Force scroll to top when content becomes visible
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+      }, 100);
+    }, 2500); // Same timing as LoadingScreen (2000ms loading + 800ms fade - some buffer)
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
     <main className="min-h-screen relative text-white" suppressHydrationWarning>
-      <ThreeBackground />
-      <Navbar />
-      <ScrollAnimations />
-      <ScanlineOverlay />
+      <LoadingScreen />
+      
+      {/* Content - Hidden until loading completes */}
+      <div 
+        className={`transition-opacity duration-500 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
+        style={{ visibility: isLoaded ? 'visible' : 'hidden' }}
+      >
+        <ThreeBackground />
+        <Navbar />
+        <ScrollAnimations />
+        <ScanlineOverlay />
       
       {/* Sections - Content Wrapper with proper z-index */}
-      <div className="relative z-10 pointer-events-none">
+      <div className="relative pointer-events-none" style={{zIndex: 1}} suppressHydrationWarning>
         <div className="pointer-events-auto">
+          <HeroSection />
           <AboutSection />
           <ServicesSection />
           <SectorsSection />
@@ -45,6 +99,7 @@ export default function Home() {
         <div className="pointer-events-auto">
           <ProcessSection />
         </div>
+      </div>
         
         <div className="pointer-events-auto">
           <TeamSection />

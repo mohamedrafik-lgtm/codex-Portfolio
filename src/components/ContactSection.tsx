@@ -126,11 +126,11 @@ export default function ContactSection() {
                   <div className="flex-1">
                     <h3 className="text-sm text-gray-400 font-mono uppercase mb-2">Phone</h3>
                     <a
-                      href="tel:+966501234567"
+                      href="tel:+20 10 26858591"
                       className="text-white hover:text-red-500 transition-colors text-lg"
                       dir="ltr"
                     >
-                      +966 50 123 4567
+                      +20 10 26858591
                     </a>
                   </div>
                 </div>
