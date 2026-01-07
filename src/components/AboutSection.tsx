@@ -91,9 +91,9 @@ export default function AboutSection() {
             {/* Decorative Numbers */}
             <div className="absolute top-1.5 right-1.5 text-[9px] text-red-500/30 font-mono">01</div>
 
-            <div className="p-5 sm:p-6 md:p-8 relative z-10 flex flex-col flex-1">
+            <div className="p-4 sm:p-6 md:p-8 relative z-10 flex flex-col flex-1">
               {/* Icon - Smaller */}
-              <div className="mb-3 sm:mb-4 flex justify-center">
+              <div className="mb-2 sm:mb-4 flex justify-center">
                 <svg
                   className="w-10 h-10 text-red-500 group-hover:scale-110 transition-transform duration-300 icon-glow"
                   fill="currentColor"
@@ -104,8 +104,8 @@ export default function AboutSection() {
               </div>
 
               {/* Arabic Title */}
-              <h3 className="text-base sm:text-lg font-bold text-red-500 mb-1.5 text-center font-cairo">من نحن</h3>
-              <div className="h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mb-2 sm:mb-3"></div>
+              <h3 className="text-base sm:text-lg font-bold text-red-500 mb-1 text-center font-cairo">من نحن</h3>
+              <div className="h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mb-1.5 sm:mb-3"></div>
               {/* English Title */}
               <h4 className="text-xs sm:text-sm font-semibold text-white/80 mb-2 sm:mb-3 text-center">Who We Are</h4>
 
@@ -113,7 +113,7 @@ export default function AboutSection() {
               <p className="text-gray-300 text-xs sm:text-sm leading-relaxed text-center tech-text">
                 نحن فريق متخصص في تطوير الحلول البرمجية المتكاملة والذكاء الاصطناعي، نجمع بين الابتكار والتكنولوجيا المتقدمة لتقديم حلول استثنائية.
               </p>
-              <p className="text-gray-400 text-[9px] sm:text-[10px] leading-relaxed text-center mt-1.5 sm:mt-2 italic tech-subtext">
+              <p className="text-gray-400 text-[11px] sm:text-xs leading-relaxed text-center mt-2 sm:mt-2 italic tech-subtext">
                 We specialize in integrated software & AI solutions, combining innovation with cutting-edge technology.
               </p>
             </div>
@@ -132,9 +132,9 @@ export default function AboutSection() {
 
             <div className="absolute top-1.5 right-1.5 text-[9px] text-red-500/30 font-mono">02</div>
 
-            <div className="p-5 sm:p-6 md:p-8 relative z-10 flex flex-col flex-1">
+            <div className="p-4 sm:p-6 md:p-8 relative z-10 flex flex-col flex-1">
               {/* Icon */}
-              <div className="mb-4 flex justify-center">
+              <div className="mb-2 sm:mb-4 flex justify-center">
                 <svg
                   className="w-10 h-10 text-red-500 group-hover:scale-110 transition-transform duration-300 icon-glow"
                   fill="currentColor"
@@ -144,14 +144,14 @@ export default function AboutSection() {
                 </svg>
               </div>
 
-              <h3 className="text-lg font-bold text-red-500 mb-1.5 text-center font-cairo">قطاعاتنا</h3>
-              <div className="h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mb-3"></div>
-              <h4 className="text-sm font-semibold text-white/80 mb-3 text-center">Our Reach</h4>
+              <h3 className="text-base sm:text-lg font-bold text-red-500 mb-1 text-center font-cairo">قطاعاتنا</h3>
+              <div className="h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mb-1.5 sm:mb-3"></div>
+              <h4 className="text-xs sm:text-sm font-semibold text-white/80 mb-2 sm:mb-3 text-center">Our Reach</h4>
 
-              <p className="text-gray-300 text-xs leading-relaxed text-center tech-text">
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed text-center tech-text">
                 نخدم قطاعات متنوعة: التعليم، التجارة الإلكترونية، الصحة، الصناعة، والخدمات المالية بحلول مخصصة ومبتكرة.
               </p>
-              <p className="text-gray-400 text-[10px] leading-relaxed text-center mt-2 italic tech-subtext">
+              <p className="text-gray-400 text-[11px] sm:text-xs leading-relaxed text-center mt-2 italic tech-subtext">
                 Serving education, e-commerce, healthcare, industry, and financial sectors with tailored innovative solutions.
               </p>
             </div>
@@ -170,9 +170,9 @@ export default function AboutSection() {
 
             <div className="absolute top-1.5 right-1.5 text-[9px] text-red-500/30 font-mono">03</div>
 
-            <div className="p-5 sm:p-6 md:p-8 relative z-10 flex flex-col flex-1">
+            <div className="p-4 sm:p-6 md:p-8 relative z-10 flex flex-col flex-1">
               {/* Icon */}
-              <div className="mb-4 flex justify-center">
+              <div className="mb-2 sm:mb-4 flex justify-center">
                 <svg
                   className="w-10 h-10 text-red-500 group-hover:scale-110 transition-transform duration-300 icon-glow"
                   fill="currentColor"
@@ -182,14 +182,14 @@ export default function AboutSection() {
                 </svg>
               </div>
 
-              <h3 className="text-lg font-bold text-red-500 mb-1.5 text-center font-cairo">التأثير</h3>
-              <div className="h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mb-3"></div>
-              <h4 className="text-sm font-semibold text-white/80 mb-3 text-center">The Impact</h4>
+              <h3 className="text-base sm:text-lg font-bold text-red-500 mb-1 text-center font-cairo">التأثير</h3>
+              <div className="h-px bg-gradient-to-r from-transparent via-red-500 to-transparent mb-1.5 sm:mb-3"></div>
+              <h4 className="text-xs sm:text-sm font-semibold text-white/80 mb-2 sm:mb-3 text-center">The Impact</h4>
 
-              <p className="text-gray-300 text-xs leading-relaxed text-center tech-text">
+              <p className="text-gray-300 text-xs sm:text-sm leading-relaxed text-center tech-text">
                 نساعد الشركات على الوصول للبيانات بسرعة، اتخاذ قرارات استراتيجية، وتحقيق نمو مستدام من خلال التحول الرقمي الشامل.
               </p>
-              <p className="text-gray-400 text-[10px] leading-relaxed text-center mt-2 italic tech-subtext">
+              <p className="text-gray-400 text-[11px] sm:text-xs leading-relaxed text-center mt-2 italic tech-subtext">
                 Enabling rapid data access, strategic decision-making, and sustainable growth through comprehensive digital transformation.
               </p>
             </div>
